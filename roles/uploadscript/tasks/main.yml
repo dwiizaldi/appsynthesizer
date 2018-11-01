@@ -1,0 +1,69 @@
+---
+# tasks file for creating directory and upload the script based on respective components
+- name: Upgrade all packages
+  yum:
+         name: '*'
+         state: latest
+          
+- name: Install required packages
+  yum:
+         name: "{{ item }}"
+         state: latest
+  with_items:
+          - wget
+          - epel-release
+          - stress-ng
+          - python-pip
+
+- name: Install httplib2
+  pip:
+          name: httplib2
+
+- name: enable the port in each VM
+  firewalld:
+          port: 8010-8020/tcp
+          permanent: true
+          state: enabled
+
+- name: create directory in target host
+  file:
+    path: /home/synthesizer/components
+    state: directory
+    mode: a+x
+
+- name: copying the db script to the target host
+  copy: 
+    src: web_db1
+    dest: /home/synthesizer/components
+  when: db|default(false)
+
+- name: copying the loadbalancer script to the target host
+  copy:
+    src: web_lb
+    dest: /home/synthesizer/components
+  when: lb|default(false)
+
+- name: copying the forwarder script to the target host
+  copy:
+    src: web_forward
+    dest: /home/synthesizer/components
+  when: fw|default(false)
+
+# tasks to run the service
+- name: Run dbserver service
+  when: db|default(false)
+  systemd:
+          name: dbserver
+          state: started
+
+- name: Run load balancer service
+  when: lb|default(false)
+  systemd:
+         name: loadbalancer
+         state: started
+
+- name: Run fowarder service
+  when: fw|default(false)
+  systemd:
+         name: forwarder
+         state: started
