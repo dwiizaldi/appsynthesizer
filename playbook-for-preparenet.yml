@@ -1,0 +1,10 @@
+---
+- name: Start playbook to prepare the network 
+  hosts: 127.0.0.1
+  connection: local
+  sudo: yes
+  roles:
+          - preparenet
+  vars:
+          mac: "{{ macgen.stdout }}"
+

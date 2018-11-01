@@ -1,0 +1,21 @@
+---
+
+- name: start on db server
+  hosts: dbserver
+  remote_user: db1
+  sudo: yes
+  roles:
+         - { role: "uploadscript", "db":true }
+
+- name: start on load balancer
+  hosts: loadbalancer
+  sudo: yes
+  roles:
+          - { role: "uploadscript", "lb":true }
+
+- name: start on forwarder
+  hosts: forwarder
+  sudo: yes
+  roles:
+          - { role: "uploadscript", "fw":true }
+
