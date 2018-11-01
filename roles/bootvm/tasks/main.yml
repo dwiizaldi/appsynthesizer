@@ -1,0 +1,31 @@
+---
+- name: Updating the inventory host file, fw.conf, and lb.conf
+  template:
+          src: "{{ item.src }}"
+          dest: "{{ item.dest }}"
+  with_items:
+          - { src: 'hosts.j2', dest: hosts }
+          - { src: 'fw.conf.j2', dest: ./roles/uploadscript/files/web_forward/fw.conf }
+          - { src: 'lb.conf.j2', dest: ./roles/uploadscript/files/web_lb/lb.conf }
+            
+- name: get list VMs
+  virt:
+          command: list_vms
+  register: output_vms
+
+- debug:
+        msg: "Existing VMs: {{ output_vms.list_vms }}"
+
+- name: run all the VMs
+  virt:
+          name: "{{ item }}"
+          #state: running
+          state: shutdown
+  with_list: "{{ output_vms.list_vms }}"
+
+- name: wait for VM to become available
+  wait_for:
+          #timeout: 300
+          timeout: 5
+  delegate_to: localhost
+

@@ -1,0 +1,6 @@
+{% for item in dbserver %}
+[Forwarder]
+target = 1
+target_ip_1 = {{ dbserver[item].ip }}
+target_port_1 = 8011
+{% endfor %}

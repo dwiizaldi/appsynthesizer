@@ -1,0 +1,6 @@
+[LoadBalancer]
+{% for item in forwarder %}
+fanout_ip_{{ loop.index }} = {{ forwarder[item].ip }}
+fanout_port_{{ loop.index }} = 801{{ loop.index }}
+fanout = {{ loop.length }}
+{% endfor %}

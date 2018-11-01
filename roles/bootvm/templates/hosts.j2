@@ -1,0 +1,14 @@
+[loadbalancer]
+{% for item in loadbalancer %}
+{{ loadbalancer[item].ip }} ansible_ssh_pass=123 ansible_ssh_user=root
+{% endfor %}
+
+[forwarder]
+{% for item in forwarder %}
+{{ forwarder[item].ip }} ansible_ssh_pass=123 ansible_ssh_user=root
+{% endfor %}
+
+[dbserver]
+{% for item in dbserver %}
+{{ dbserver[item].ip }} ansible_ssh_pass=123 ansible_ssh_user=root
+{% endfor %}
