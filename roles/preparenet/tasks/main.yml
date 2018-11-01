@@ -1,0 +1,36 @@
+---
+- name: Create directory for this project
+  file:
+          path: /home/synthesizer
+          state: directory
+          mode: a+x
+
+- name: generate mac for new network
+  command: "./macgen.sh"
+  register: macgen
+
+- debug:
+        msg: "{{ macgen.stdout }}" 
+
+- name: Create XML for a new network and update the inventory host file
+  template:
+          src: "{{ item.src }}"
+          dest: "{{item.dest}}"
+          with_items:
+          - { src: 'prepnet.xml.j2', dest: '/home/synthesizer/prepnet.xml' }
+
+- name: Define a new network
+  virt_net:
+          command: define
+          name: prepnet 
+          xml: '{{ lookup("template", "/home/synthesizer/prepnet.xml") }}'
+
+- name: Start the new network
+  virt_net:
+          command: create
+          name: prepnet
+
+- name: Ensure the new network will be started at boot
+  virt_net:
+          autostart: yes
+          name: prepnet

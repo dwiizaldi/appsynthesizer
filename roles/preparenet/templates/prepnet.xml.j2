@@ -1,0 +1,25 @@
+<network>
+  <name>prepnet</name>
+  <uuid>{{ 12 | random | to_uuid }}</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr501' stp='on' delay='0'/>
+  <mac address='{{ macgen.stdout }}'/>
+  <domain name='prepnet'/>
+  <ip address='192.168.0.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.0.1' end='192.168.0.254'/>
+      {% for item in loadbalancer %}
+      <host mac='{{ loadbalancer[item].mac }}' name='{{ loadbalancer[item].name }}' ip='{{ loadbalancer[item].ip }}'/>
+      {% endfor %}{% for item in forwarder %}
+      <host mac='{{ forwarder[item].mac }}' name='{{ forwarder[item].name }}' ip='{{ forwarder[item].ip }}'/>
+      {% endfor %}{% for item in dbserver %}
+      <host mac='{{ dbserver[item].mac }}' name='{{ dbserver[item].name }}' ip='{{ dbserver[item].ip }}'/>
+      {% endfor %}
+    </dhcp>
+  </ip>
+</network>
+
