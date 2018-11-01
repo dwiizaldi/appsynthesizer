@@ -1,0 +1,34 @@
+---
+loadbalancer:
+        - test: elbi1
+          cpu: 1
+          memory: 1024000
+          mac: 00:16:3e:70:70:22
+          ip: 192.168.0.10
+        - test: elbi2
+          cpu: 1
+          memory: 2048000
+          mac: 00:16:3e:1b:f2:4c
+          ip: 192.168.0.11
+forwarder:
+        - test: efwe1
+          cpu: 1
+          memory: 1024000
+          mac: 00:16:3e:33:7a:f4
+          ip: 192.168.0.12
+        - test: efwe2
+          cpu: 1
+          memory: 2048000
+          mac: 00:16:3e:6b:1a:e9
+          ip: 192.168.0.13
+        - test: efwe3
+          cpu: 1
+          memory: 1024000
+          mac: 00:16:3e:4e:f6:73
+          ip: 192.168.0.14
+dbserver:
+        - test: dibi1
+          cpu: 2
+          memory: 1024000
+          mac: 00:16:3e:22:86:06
+          ip: 192.168.0.15

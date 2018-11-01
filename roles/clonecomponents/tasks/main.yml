@@ -1,0 +1,68 @@
+---
+- name: Create directory for virtual machine's image and virtual machine's xml
+  file:
+          path: /home/synthesizer
+          state: directory
+          mode: a+x
+
+- name: overwrite xml file
+  template:
+          src: template.xml
+          dest: /home/synthesizer/{{ item.value.name }}.xml
+  with_dict: "{{ loadbalancer }}"
+
+- name: overwrite xml file
+  template:
+          src: template.xml
+          dest: /home/synthesizer/{{ item.value.name }}.xml
+  with_dict: "{{ forwarder }}"
+
+- name: overwrite xml file
+  template:
+          src: template.xml
+          dest: /home/synthesizer/{{ item.value.name }}.xml
+  with_dict: "{{ dbserver }}"
+
+############## COPY IMAGE ################
+#
+- name: copy lb image
+  copy:
+          src: lb.qcow2
+          dest: /home/synthesizer/{{ item.value.name }}.qcow2
+  with_dict: "{{ loadbalancer }}"
+
+- name: copy fw image
+  copy:
+          src: fw.qcow2
+          dest: /home/synthesizer/{{ item.value.name }}.qcow2
+  with_dict: "{{ forwarder }}"
+
+- name: copy db image
+  copy:
+          src: db.qcow2
+          dest: /home/synthesizer/{{ item.value.name }}.qcow2
+  with_dict: "{{ dbserver }}"
+
+
+############## DEFINE XML ################
+#
+- name: define lb xml
+  virt:
+          name: "{{ item.value.name }}"
+          command: define
+          xml: "{{ lookup('template', '/home/synthesizer/{{ item.value.name }}.xml') }}"
+  with_dict: "{{ loadbalancer }}"
+
+- name: define fw xml
+  virt:
+          name: "{{ item.value.name }}"
+          command: define
+          xml: "{{ lookup('template', '/home/synthesizer/{{ item.value.name }}.xml') }}"
+  with_dict: "{{ forwarder }}"
+
+- name: define db xml
+  virt:
+          name: "{{ item.value.name }}"
+          command: define
+          xml: "{{ lookup('template', '/home/synthesizer/{{ item.value.name }}.xml') }}"
+  with_dict: "{{ dbserver }}"
