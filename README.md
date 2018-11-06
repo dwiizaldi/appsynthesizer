@@ -1,5 +1,16 @@
 # appsynthesizer
 Application Synthesizer
 
-Name: Dwi Hartati Izaldi
-Project: This is to synthesize the application on the go
+There are several assumptions here to be noted:
+1. Host or management node should has Ansible installed already
+2. Inside /etc/ansible/ansible.cfg modify this line
+   [default]
+   inventory=/path/to/host/file/inside/the/clone/directory
+   host_key_checking=False
+3. There will be new network created "prepnet" which will be fully used by this project. It is DHCP and NAT forwarding with IP 192.168.0.1/24
+4. Forwarder only considers 1 db server as its branchout
+5. The platform OS of the components is CentOS7
+6. New folder will be created in the management node "/home/synthesizer" contains all the XMLs file of component, the image of component, and the XML file of the "prepnet" network
+7. All the components are running at port 8011
+8. The access to the component's machine: root/123
+9. Because this project uses KVM, make sure it is installed already
