@@ -14,3 +14,5 @@ There are several assumptions here to be noted:
 7. All the components are running at port 8011
 8. The access to the component's machine: root/123
 9. Because this project uses KVM, make sure it is installed already
+10. Make sure that python-libvirt and python-lxml already exist in the host node
+11. Make sure the three images already placed inside roles/clonecomponents/files/
