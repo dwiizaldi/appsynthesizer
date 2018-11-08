@@ -54,16 +54,19 @@
   when: db|default(false)
   systemd:
           name: dbserver
-          state: started
+          state: restarted
+          daemon_reload: yes
 
 - name: Run load balancer service
   when: lb|default(false)
   systemd:
          name: loadbalancer
-         state: started
+         state: restarted
+         daemon_reload: yes
 
 - name: Run fowarder service
   when: fw|default(false)
   systemd:
          name: forwarder
-         state: started
+         state: restarted
+         daemon_reload: yes

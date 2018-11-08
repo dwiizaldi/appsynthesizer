@@ -161,7 +161,8 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
   def do_GET(self):
     global attr, delay_post_f, delay_post_b, delay_get_f, delay_get_b, counter, net, ch, modify_flag
 
-    with open('payload.json') as json_file:
+    #with open('payload.json') as json_file:
+    with open('/home/synthesizer/components/web_db1/payload.json') as json_file:
         datafalse = json.load(json_file)
 
     if None != re.search('/api/v1/getrecord/*', self.path):

@@ -2,9 +2,8 @@
 192.168.0.10 ansible_ssh_pass=123 ansible_ssh_user=root
 
 [forwarder]
+192.168.0.11 ansible_ssh_pass=123 ansible_ssh_user=root
 192.168.0.12 ansible_ssh_pass=123 ansible_ssh_user=root
-192.168.0.13 ansible_ssh_pass=123 ansible_ssh_user=root
-192.168.0.14 ansible_ssh_pass=123 ansible_ssh_user=root
 
 [dbserver]
-192.168.0.15 ansible_ssh_pass=123 ansible_ssh_user=root
+192.168.0.13 ansible_ssh_pass=123 ansible_ssh_user=root

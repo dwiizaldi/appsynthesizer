@@ -19,13 +19,13 @@
 - name: run all the VMs
   virt:
           name: "{{ item }}"
-          #state: running
-          state: shutdown
+          state: running
+          #state: shutdown
   with_list: "{{ output_vms.list_vms }}"
 
 - name: wait for VM to become available
   wait_for:
-          #timeout: 300
-          timeout: 5
+          timeout: 300
+          #timeout: 5
   delegate_to: localhost
 
