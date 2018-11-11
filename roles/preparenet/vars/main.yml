@@ -1,27 +1,27 @@
 ---
 loadbalancer:
         lb1:
-                name: elbi1
+                name: lb1 
                 cpu: 1
                 memory: 1024000
                 mac: 00:16:3e:70:70:22
                 ip: 192.168.0.10
 forwarder:
         fw1:
-                name: efwe1
+                name: fw1
                 cpu: 1
                 memory: 1024000
                 mac: 00:16:3e:33:7a:f4
                 ip: 192.168.0.11
         fw2:
-                name: efwe2
+                name: fw2
                 cpu: 1
                 memory: 2048000
                 mac: 00:16:3e:6b:1a:e9
                 ip: 192.168.0.12
 dbserver:
         db:
-                name: dibi
+                name: db
                 cpu: 2
                 memory: 1024000
                 mac: 00:16:3e:22:86:06
