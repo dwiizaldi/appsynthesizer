@@ -7,3 +7,10 @@
 
 [dbserver]
 192.168.0.13 ansible_ssh_pass=123 ansible_ssh_user=root
+
+[client]
+192.168.0.88 ansible_ssh_pass=123 ansible_ssh_user=root
+
+[worker]
+192.168.0.90 ansible_ssh_pass=123 ansible_ssh_user=root
+192.168.0.89 ansible_ssh_pass=123 ansible_ssh_user=root

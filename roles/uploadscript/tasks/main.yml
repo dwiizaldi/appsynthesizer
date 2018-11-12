@@ -19,9 +19,15 @@
   pip:
           name: httplib2
 
-- name: enable the port in each VM
+- name: enable the port for socket based application in each VM
   firewalld:
           port: 8010-8020/tcp
+          permanent: true
+          state: enabled
+
+- name: enable the port for rabbitmq in each VM
+  firewalld:
+          port: 5672/tcp
           permanent: true
           state: enabled
 
@@ -48,6 +54,18 @@
     src: web_forward
     dest: /home/synthesizer/components
   when: fw|default(false)
+
+- name: copying the client script to the target host
+  copy:
+    src: client
+    dest: /home/synthesizer/components
+  when: client|default(false)
+
+- name: copying the worker script to the target host
+  copy:
+    src: worker
+    dest: /home/synthesizer/components
+  when: worker|default(false)
 
 # tasks to run the service
 - name: Run dbserver service

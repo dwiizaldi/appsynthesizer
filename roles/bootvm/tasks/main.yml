@@ -1,5 +1,5 @@
 ---
-- name: Updating the inventory host file, fw.conf, and lb.conf
+- name: Updating the inventory host file, fw.conf, lb.conf, and celery configuration
   template:
           src: "{{ item.src }}"
           dest: "{{ item.dest }}"
@@ -7,6 +7,7 @@
           - { src: 'hosts.j2', dest: hosts }
           - { src: 'fw.conf.j2', dest: ./roles/uploadscript/files/web_forward/fw.conf }
           - { src: 'lb.conf.j2', dest: ./roles/uploadscript/files/web_lb/lb.conf }
+          - { src: 'celery.py.j2', dest: ./roles/uploadscript/files/worker/test_celery/celery.py }
             
 - name: get list VMs
   virt:

@@ -19,3 +19,14 @@
   roles:
           - { role: "uploadscript", "fw":true }
 
+- name: start on client
+  hosts: client 
+  sudo: yes
+  roles:
+          - { role: "uploadscript", "client":true }
+
+- name: start on worker
+  hosts: worker
+  sudo: yes
+  roles:
+          - { role: "uploadscript", "worker":true }

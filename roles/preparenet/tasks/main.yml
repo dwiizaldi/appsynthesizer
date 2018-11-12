@@ -16,8 +16,6 @@
   template:
           src: prepnet.xml.j2
           dest: /home/synthesizer/prepnet.xml
-          #with_items:
-          #- { src: 'prepnet.xml.j2', dest: '/home/synthesizer/prepnet.xml' }
 
 - name: Define a new network
   virt_net:

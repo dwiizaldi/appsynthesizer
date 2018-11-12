@@ -5,23 +5,35 @@
           state: directory
           mode: a+x
 
-- name: overwrite xml file
+- name: overwrite lb xml file
   template:
           src: template.xml
           dest: /home/synthesizer/{{ item.value.name }}.xml
   with_dict: "{{ loadbalancer }}"
 
-- name: overwrite xml file
+- name: overwrite fw xml file
   template:
           src: template.xml
           dest: /home/synthesizer/{{ item.value.name }}.xml
   with_dict: "{{ forwarder }}"
 
-- name: overwrite xml file
+- name: overwrite db xml file
   template:
           src: template.xml
           dest: /home/synthesizer/{{ item.value.name }}.xml
   with_dict: "{{ dbserver }}"
+
+- name: overwrite client xml file
+  template:
+          src: template.xml
+          dest: /home/synthesizer/{{ item.value.name }}.xml
+  with_dict: "{{ client }}"
+
+- name: overwrite worker xml file
+  template:
+          src: template.xml
+          dest: /home/synthesizer/{{ item.value.name }}.xml
+  with_dict: "{{ worker }}"
 
 ############## COPY IMAGE ################
 #
@@ -43,6 +55,17 @@
           dest: /home/synthesizer/{{ item.value.name }}.qcow2
   with_dict: "{{ dbserver }}"
 
+- name: copy client image
+  copy:
+          src: client.qcow2
+          dest: /home/synthesizer/{{ item.value.name }}.qcow2
+  with_dict: "{{ client }}"
+
+- name: copy worker image
+  copy:
+          src: worker.qcow2
+          dest: /home/synthesizer/{{ item.value.name }}.qcow2
+  with_dict: "{{ worker }}"
 
 ############## DEFINE XML ################
 #
@@ -66,3 +89,17 @@
           command: define
           xml: "{{ lookup('template', '/home/synthesizer/{{ item.value.name }}.xml') }}"
   with_dict: "{{ dbserver }}"
+
+- name: define client xml
+  virt:
+          name: "{{ item.value.name }}"
+          command: define
+          xml: "{{ lookup('template', '/home/synthesizer/{{ item.value.name }}.xml') }}"
+  with_dict: "{{ client }}"
+
+- name: define worker xml
+  virt:
+          name: "{{ item.value.name }}"
+          command: define
+          xml: "{{ lookup('template', '/home/synthesizer/{{ item.value.name }}.xml') }}"
+  with_dict: "{{ worker }}"
