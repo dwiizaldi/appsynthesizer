@@ -11,7 +11,7 @@ There are several assumptions here to be noted:
 4. Forwarder only considers 1 db server as its branchout
 5. The platform OS of the components is CentOS7
 6. New folder will be created in the management node "/home/synthesizer" contains all the XMLs file of component, the image of component, and the XML file of the "prepnet" network
-7. All the components are running at port 8011
+7. All the components (socket-based) are running at port 8011
 8. The access to the component's machine: root/123
 9. Because this project uses KVM, make sure it is installed already
 10. Make sure that python-libvirt and python-lxml already exist in the host node
