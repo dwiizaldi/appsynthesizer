@@ -18,6 +18,10 @@
       <host mac='{{ forwarder[item].mac }}' name='{{ forwarder[item].name }}' ip='{{ forwarder[item].ip }}'/>
       {% endfor %}{% for item in dbserver %}
       <host mac='{{ dbserver[item].mac }}' name='{{ dbserver[item].name }}' ip='{{ dbserver[item].ip }}'/>
+      {% endfor %}{% for item in client %}
+      <host mac='{{ client[item].mac }}' name='{{ client[item].name }}' ip='{{ client[item].ip }}'/>
+      {% endfor %}{% for item in worker %}
+      <host mac='{{ worker[item].mac }}' name='{{ worker[item].name }}' ip='{{ worker[item].ip }}'/>
       {% endfor %}
     </dhcp>
   </ip>

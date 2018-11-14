@@ -39,8 +39,10 @@ worker:
                 cpu: 1
                 memory: 512000
                 mac: 00:16:3e:22:88:05
+                ip: 192.168.0.100
         wr2:
                 name: worker2
                 cpu: 1
                 memory: 512000
                 mac: 00:16:3e:22:68:05
+                ip: 192.168.0.101
