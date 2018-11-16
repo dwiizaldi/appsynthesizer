@@ -16,3 +16,6 @@ There are several assumptions here to be noted:
 9. Because this project uses KVM, make sure it is installed already
 10. Make sure that python-libvirt and python-lxml already exist in the host node
 11. Make sure the three images already placed inside roles/clonecomponents/files/
+
+
+https://drive.google.com/drive/folders/1xUj0f5l5E6i0MeTf1up9fsDif-KrNxFG?ogsrc=32
