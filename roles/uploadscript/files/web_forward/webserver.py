@@ -57,13 +57,13 @@ class myHandler(BaseHTTPRequestHandler):
 				h = httplib2.Http()
 
 				# delay
-				time.sleep(delay_post_f)
+				time.sleep(float(delay_post_f))
 
 	        	        (r, content) = h.request(url, "POST", headers=h1, body=d1)
         	        	print "%s" % (r)
 
 				# delay
-				time.sleep(delay_post_b)
+				time.sleep(float(delay_post_b))
 
 			else:
 				self.send_response(200)
@@ -144,13 +144,13 @@ class myHandler(BaseHTTPRequestHandler):
 		h = httplib2.Http()
 
 		# delay
-		time.sleep(delay_get_f)
+		time.sleep(float(delay_get_f))
 
 		(r, content) = h.request(url, 'GET')
 		print "%s" % (r)
 
 		# delay
-		time.sleep(delay_get_b)
+		time.sleep(float(delay_get_b))
 
 		self.send_response(200)
 		self.send_header('Content-type','text/html')
