@@ -65,10 +65,9 @@ class myHandler(BaseHTTPRequestHandler):
 				# delay
 				time.sleep(float(delay_post_b))
 
-			else:
-				self.send_response(200)
-				self.send_header('Content-Type', ctype)
-				self.end_headers()
+			self.send_response(200)
+			self.send_header('Content-Type', ctype)
+			self.end_headers()
 		
 		elif None != re.search('/api/v1/setdelay/*', self.path):
 			ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
@@ -91,8 +90,8 @@ class myHandler(BaseHTTPRequestHandler):
                                 print "current delay values are:%s, %s, %s, %s" % (delay_post_f, delay_post_b, delay_get_f, delay_get_b)
 			else:
                                 data = {}
-                                self.send_response(200)
-                                self.end_headers()
+                        self.send_response(200)
+                        self.end_headers()
 
                 elif None != re.search('/api/v1/setstress/*', self.path):
 			ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
