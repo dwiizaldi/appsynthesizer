@@ -7,7 +7,7 @@
           - { src: 'hosts.j2', dest: ./hosts }
           - { src: 'fw.conf.j2', dest: ./roles/uploadscript/files/web_forward/fw.conf }
           - { src: 'lb.conf.j2', dest: ./roles/uploadscript/files/web_lb/lb.conf }
-          - { src: 'celery.py.j2', dest: ./roles/uploadscript/files/worker/test_celery/celery.py }
+          - { src: 'settings.py.j2', dest: ./roles/uploadscript/files/django-celery-example/mysite/settings.py }
             
 - name: get list VMs
   virt:

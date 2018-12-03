@@ -96,6 +96,14 @@
          state: restarted
          daemon_reload: yes
 
-- name: Run rabbitmq service on client
+- name: Run django service on client
   when: client|default(false)
+  systemd:
+         name: django
+         state: restarted
+         daemon_reload: yes
+
+- name: Run worker server on worker
+  when: worker|default(false)
   command: supervisord -c /etc/worker.conf
+
