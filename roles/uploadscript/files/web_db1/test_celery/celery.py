@@ -3,9 +3,7 @@
 from __future__ import absolute_import
 from celery import Celery
 
-{% for item in client %}
 app = Celery('test_celery',
-             broker='amqp://jimmy:jimmy123@{{ dbserver[item].ip }}/jimmy_vhost',
+             broker='amqp://jimmy:jimmy123@localhost/jimmy_vhost',
              backend='rpc://',
              include=['test_celery.tasks'])
-{% endfor %} 
