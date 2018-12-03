@@ -8,10 +8,10 @@ loadbalancer:
                 ip: 192.168.0.50
 forwarder:
         fw1:
-                name: fw1
+                name: fw1 
                 cpu: 1
                 memory: 1024000
-                mac: 00:16:3e:33:7a:f4
+                mac: 00:16:3e:33:8a:84
                 ip: 192.168.0.51
         fw2:
                 name: fw2
