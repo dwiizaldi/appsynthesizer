@@ -95,3 +95,7 @@
          name: rabbitmq-server
          state: restarted
          daemon_reload: yes
+
+- name: Run rabbitmq service on client
+  when: client|default(false)
+  command: supervisord -c /etc/worker.conf
