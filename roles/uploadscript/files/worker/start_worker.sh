@@ -1,1 +1,2 @@
-celery -A test_celery worker --loglevel=info
+python manage.py /home/synthesizer/components/django-celery-example/manage.py migrate
+celery -A mysite worker -l info

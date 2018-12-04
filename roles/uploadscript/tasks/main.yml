@@ -105,5 +105,8 @@
 
 - name: Run worker server on worker
   when: worker|default(false)
-  command: supervisord -c /etc/worker.conf
+  systemd:
+         name: supervisord 
+         state: restarted
+         daemon_reload: yes
 
