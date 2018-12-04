@@ -103,6 +103,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 #CELERY_BROKER_URL = 'amqp://localhost'
-CELERY_BROKER_URL = 'amqp://worker:123@192.168.0.100/worker'
+CELERY_BROKER_URL = 'amqp://worker:123@192.168.0.23/worker'

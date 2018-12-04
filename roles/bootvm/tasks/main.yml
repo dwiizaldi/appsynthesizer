@@ -7,7 +7,8 @@
           - { src: 'hosts.j2', dest: ./hosts }
           - { src: 'fw.conf.j2', dest: ./roles/uploadscript/files/web_forward/fw.conf }
           - { src: 'lb.conf.j2', dest: ./roles/uploadscript/files/web_lb/lb.conf }
-          - { src: 'settings.py.j2', dest: ./roles/uploadscript/files/worker/mysite/settings.py }
+          - { src: 'settingsclient.py.j2', dest: ./roles/uploadscript/files/client/mysite/settings.py }
+          - { src: 'settingsworker.py.j2', dest: ./roles/uploadscript/files/worker/mysite/settings.py }
             
 - name: get list VMs
   virt:

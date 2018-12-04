@@ -1,23 +1,28 @@
 ---
 # tasks file for creating directory and upload the script based on respective components
-- name: Upgrade all packages
-  yum:
-         name: '*'
-         state: latest
+#- name: Upgrade all packages
+#  yum:
+#         name: '*'
+#         state: latest
           
-- name: Install required packages
-  yum:
-         name: "{{ item }}"
-         state: latest
-  with_items:
-          - wget
-          - epel-release
-          - stress-ng
-          - python-pip
+#- name: Install required packages
+#  yum:
+#         name: "{{ item }}"
+#         state: latest
+#  with_items:
+#          - wget
+#          - epel-release
+#          - stress-ng
+#          - python-pip
 
-- name: Install httplib2
-  pip:
-          name: httplib2
+#- name: Install httplib2
+#  pip:
+#          name: httplib2
+
+- name: enable firewalld service in each VM
+  systemd:
+          name: firewalld
+          state: restarted
 
 - name: enable the port for socket based application in each VM
   firewalld:
@@ -105,8 +110,9 @@
 
 - name: Run worker server on worker
   when: worker|default(false)
-  systemd:
-         name: supervisord 
-         state: restarted
-         daemon_reload: yes
+  command: /home/synthesizer/components/worker/start_worker.sh
+#  systemd:
+#         name: supervisord 
+#         state: restarted
+#         daemon_reload: yes
 
