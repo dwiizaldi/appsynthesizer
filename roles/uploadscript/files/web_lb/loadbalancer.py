@@ -283,7 +283,7 @@ if __name__=='__main__':
 #        _from_ip = sys.argv[1]
         _from_ip = "127.0.0.1"
 #        _from_port = int(sys.argv[2])
-        _from_port = 8012
+        _from_port = 8011
 
 	# fanout
 	fanout_ip = []
