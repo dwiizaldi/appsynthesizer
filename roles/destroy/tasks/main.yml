@@ -1,0 +1,72 @@
+---
+#- name: get list VMs
+#  virt:
+#	command: list_vms
+#  register: output_vms
+
+#- debug:
+#	msg: "Existing VMs: {{ output_vms.list_vms }}" 
+
+- name: shutdown all the VMs
+  virt:
+    name: "{{ item.value.name }}"
+    state: shutdown
+  with_dict:
+    - "{{ loadbalancer }}"
+    - "{{ forwarder }}" 
+    - "{{ dbserver }}"
+    - "{{ client }}"
+    - "{{ worker }}"
+
+- name: wait for VM to completely shut off
+  wait_for:
+    timeout: 180
+  delegate_to: localhost
+
+- name: delete all the VMs
+  virt:
+    name: "{{ item.value.name }}"
+    command: undefine
+  with_dict:
+    - "{{ loadbalancer }}"
+    - "{{ forwarder }}"
+    - "{{ dbserver }}"
+    - "{{ client }}"
+    - "{{ worker }}"
+
+- name: delete all XMLs
+  file:
+    path: /home/synthesizer/{{ item.value.name }}.xml
+    state: absent
+  with_dict:
+    - "{{ loadbalancer }}"
+    - "{{ forwarder }}"
+    - "{{ dbserver }}"
+    - "{{ client }}"
+    - "{{ worker }}"
+
+- name: delete all images
+  file:
+    path: /home/synthesizer/{{ item.value.name }}.qcow2
+    state: absent
+  with_dict:
+    - "{{ loadbalancer }}"
+    - "{{ forwarder }}"
+    - "{{ dbserver }}"
+    - "{{ client }}"
+    - "{{ worker }}"
+
+- name: shut dowm the network
+  virt_net:
+    command: destroy
+    name: prepnet
+
+- name: delete the network
+  virt_net:
+    command: undefine
+    name: prepnet
+
+- name: delete the network's XML
+  file:
+    path: /home/synthesizer/prepnet.xml
+    state: absent
