@@ -1,36 +1,54 @@
 ---
 loadbalancer:
         lb1:
-                name: loadbalancer 
+                name: lb 
                 cpu: 1
                 memory: 1024000
                 mac: 00:16:31:70:70:22
-                ip: 192.168.0.20
+                ip: 192.168.0.80
 forwarder:
         fw1:
-                name: forwarder
+                name: fw1
+                cpu: 1
+                memory: 512000
+                mac: 00:16:32:33:8a:84
+                ip: 192.168.0.81
+        fw2:
+                name: fw2
                 cpu: 1
                 memory: 1024000
-                mac: 00:16:32:33:8a:84
-                ip: 192.168.0.21
+                mac: 00:16:32:33:8a:86
+                ip: 192.168.0.82
 dbserver:
         db:
-                name: dbserver
+                name: db
                 cpu: 2
                 memory: 1024000
                 mac: 00:16:33:22:86:06
-                ip: 192.168.0.22
+                ip: 192.168.0.83
 client:
         cl1:
-                name: client
+                name: cl
                 cpu: 1
                 memory: 1024000
                 mac: 00:16:34:22:86:05
-                ip: 192.168.0.23
+                ip: 192.168.0.5
 worker:
         wr1:
-                name: worker
+                name: wr1
                 cpu: 1
-                memory: 512000
+                memory: 1024000
                 mac: 00:16:35:22:88:05
-                ip: 192.168.0.24
+                ip: 192.168.0.6
+        wr2:
+                name: wr2
+                cpu: 1
+                memory: 1024000
+                mac: 00:16:35:22:84:04
+                ip: 192.168.0.7
+        wr3:
+                name: wr3
+                cpu: 1
+                memory: 1024000
+                mac: 00:16:35:22:83:03
+                ip: 192.168.0.8

@@ -10,24 +10,19 @@
           - { src: 'settingsclient.py.j2', dest: ./roles/uploadscript/files/client/mysite/settings.py }
           - { src: 'settingsworker.py.j2', dest: ./roles/uploadscript/files/worker/mysite/settings.py }
             
-- name: get list VMs
-  virt:
-          command: list_vms
-  register: output_vms
-
-- debug:
-        msg: "Existing VMs: {{ output_vms.list_vms }}"
-
 - name: run all the VMs
   virt:
-          name: "{{ item }}"
+          name: "{{ item.value.name }}"
           state: running
-          #state: shutdown
-  with_list: "{{ output_vms.list_vms }}"
+  with_dict: 
+          - "{{ loadbalancer }}"
+          - "{{ forwarder }}"
+          - "{{ dbserver }}"
+          - "{{ client }}"
+          - "{{ worker }}"
 
 - name: wait for VM to become available
   wait_for:
           timeout: 300
-          #timeout: 5
   delegate_to: localhost
 

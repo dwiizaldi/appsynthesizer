@@ -25,7 +25,7 @@ SECRET_KEY = 'flnh=1!tsz^4&grtw&0$2&6#n*@aybhg-vdpa-i1rc&pyv$+9c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.100', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['192.168.0.5', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -103,5 +103,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-CELERY_BROKER_URL = 'amqp://worker:123@localhost/worker'
+#CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://worker:123@192.168.0.5/worker'

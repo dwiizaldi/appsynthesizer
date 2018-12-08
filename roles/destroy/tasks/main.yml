@@ -1,11 +1,4 @@
 ---
-#- name: get list VMs
-#  virt:
-#	command: list_vms
-#  register: output_vms
-
-#- debug:
-#	msg: "Existing VMs: {{ output_vms.list_vms }}" 
 
 - name: shutdown all the VMs
   virt:
