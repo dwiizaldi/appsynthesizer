@@ -55,14 +55,14 @@ class myHandler(BaseHTTPRequestHandler):
 				d1 = data.keys()[0]
 
 				# delay
-				time.sleep(delay_post_f)
+				time.sleep(float(delay_post_f))
 
 				print '   >>> forwarding POST to %s (header: %s, data: %s)\n-------------' % (url, h1, d1)
 				h = httplib2.Http()
 				(r, content) = h.request(url, "POST", headers=h1, body=d1)
 
 				# delay
-				time.sleep(delay_post_b)
+				time.sleep(float(delay_post_b))
 
 				self.send_response(200)
 				self.send_header('Content-Type', ctype)
@@ -195,7 +195,7 @@ class myHandler(BaseHTTPRequestHandler):
 		url = 'http://'+_to_ip + ':' + str(_to_port) + self.path
 
 		# delay
-		time.sleep(delay_get_f)
+		time.sleep(float(delay_get_f))
 
 		print '   >>> forwarding GET to %s\n-------------' % (url)
 		h = httplib2.Http()
@@ -204,7 +204,7 @@ class myHandler(BaseHTTPRequestHandler):
 #		print "%s" % (r)
 
 		# delay
-		time.sleep(delay_get_b)
+		time.sleep(float(delay_get_b))
 
 		self.send_response(200)
 		self.send_header('Content-type','text/html')
