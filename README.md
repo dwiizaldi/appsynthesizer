@@ -2,7 +2,7 @@
 Application Synthesizer
 
 There are several assumptions here to be noted:
-1. Host or management node should has Ansible installed already
+1. Host or management node should has Ansible installed already, recommended version is 2.5.2
 2. Inside /etc/ansible/ansible.cfg modify this line
    [default]
    inventory=/path/to/host/file/inside/the/clone/directory
