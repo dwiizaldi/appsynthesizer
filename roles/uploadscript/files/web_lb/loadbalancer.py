@@ -104,7 +104,7 @@ class myHandler(BaseHTTPRequestHandler):
 
 				if stype == 'cpu':
 					print "start stressing CPU with load %s%% within %ss" % (value,time)
-					subprocess.call("stress-ng --cpu '%s' --timeout '%s'" % (value,time), shell=True)
+					subprocess.call("stress-ng --cpu 1 --cpu-load '%s' --timeout '%s'" % (value,time), shell=True)
 
 				if stype == 'mem':
 					print "start stressing memory with value %s bytes within %ss" % (value,time)
