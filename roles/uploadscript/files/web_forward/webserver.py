@@ -104,15 +104,15 @@ class myHandler(BaseHTTPRequestHandler):
 					value,time = num.split(",")
 				
 				if stype == 'cpu':
-					print "start stressing CPU with load %s%% within %ss" % (value,time)
-					subprocess.call("stress-ng --cpu 1 --cpu-load '%s' --timeout '%s'" % (value,time), shell=True)
+					print "start stressing CPU with %s workers within %ss" % (value,time)
+					subprocess.call("stress-ng --cpu '%s' --timeout '%s'" % (value,time), shell=True)
 
 				if stype == 'mem':
-					print "start stressing memory with value %s bytes within %ss" % (value,time)
-					subprocess.call("stress-ng --vm 2 --vm-bytes '%s' --timeout '%s'" % (value,time), shell=True)
+					print "start stressing memory with value %s GB within %ss" % (value,time)
+					subprocess.call("stress-ng --vm 2 --vm-bytes '%s'G --timeout '%s'" % (value,time), shell=True)
 
 				if stype == 'io':
-					print "start stressing disk with value %s within %ss" % (value,time)
+					print "start stressing disk with %s io stressors within %ss" % (value,time)
 					subprocess.call("stress-ng --io %s --timeout '%s'" % (value,time), shell=True)
 			else:
 				data = {}
