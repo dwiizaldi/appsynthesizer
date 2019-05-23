@@ -17,6 +17,12 @@
           permanent: true
           state: enabled
 
+- name: enabl the port for elasticsearch in each VM
+  firewalld:
+          port: 9200-9300/tcp
+          permanent: true
+          state: enabled
+
 - name: create directory in target host
   file:
     path: /home/synthesizer/components
