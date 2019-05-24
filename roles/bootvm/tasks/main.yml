@@ -14,6 +14,7 @@
   virt:
           name: "{{ item.value.name }}"
           state: running
+#          state: shutdown
   with_dict: 
           - "{{ loadbalancer }}"
           - "{{ forwarder }}"
@@ -21,8 +22,13 @@
           - "{{ client }}"
           - "{{ worker }}"
 
-- name: wait for VM to become available
-  wait_for:
-          timeout: 300
-  delegate_to: localhost
+#- name: wait for VM to become available
+#  wait_for:
+#          timeout: 180
+#  delegate_to: localhost
 
+- name: wait for VM to become available
+  wait_for_connection:
+          delay: 60
+          timeout: 180
+  delegate_to: localhost
